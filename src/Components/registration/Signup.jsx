@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { AiOutlineUser } from "react-icons/Ai";
+import { AiOutlineUser } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
 import { PiPasswordBold } from "react-icons/pi";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
@@ -13,6 +13,7 @@ function Signup() {
   const router = useRouter();
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
     username: "",
     email: "",
@@ -30,7 +31,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     // You can perform validation here before making the API call
 
     try {
@@ -53,15 +54,18 @@ function Signup() {
           password: '',
           username: '',
         });
-        router.push("/sign-in");
+        setLoading(false)
+        router.push("/signin");
       } else {
         setError(data.message);
         setSuccessMessage('');
+        setLoading(false)
       }
     } catch (error) {
       console.log(error);
       // setError('An error occurred during registration');
       setSuccessMessage('');
+      setLoading(false)
     }
   };
 
@@ -170,9 +174,10 @@ function Signup() {
         <div className="sign up flex items-center gap-5">
           <button
             // href={"/signin"}
-            class="inline-flex text-white bg-indigo-500 border-0 py-2  px-20 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+            disabled={loading}
+            class="flex text-white bg-indigo-500 border-0 py-2  px-20 focus:outline-none hover:bg-indigo-600 rounded text-lg"
           >
-            Sign In
+            {loading ? "Signing uP" : "Sign Up"}
           </button>
           <h2>or</h2>
           <span class="inline-flex mu  text-white bg-[transparent] border-0 py-3 px-10 focus:outline-none hover:bg-indigo-600 rounded text-lg">

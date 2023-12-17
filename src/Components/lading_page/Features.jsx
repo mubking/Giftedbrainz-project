@@ -6,7 +6,7 @@ function Features() {
     <div className="text-black text-center five w-[20%] text-2xl font-semibold font-['Poppins'] capitalize" style={{ border: "2px solid black" }}> features & benefits</div>
     <div className='mt-5'>
     <div className="flex flex-col md:flex-row w-full gap-5">
-            <div className='flex flex-col w-[100%] rounded-[6%]'  style={{ border: "2px solid black" }}>
+            <div className='flex flex-col md:flex-row w-[100%] rounded-[6%]'  style={{ border: "2px solid black" }}>
               <img style={{height:"25vh"}} src="/Rectangle 145.png" alt="" />
               <div className='p-3'>
               <div className=" text-black text-[23px] text-center font-semibold font-['Poppins'] capitalize mt-5">fast withdrawals</div>

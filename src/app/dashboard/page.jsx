@@ -1,13 +1,4 @@
-// import Dash from '@/Components/Asidebar/Dash'
-import Dash from '@/Components/Asidebar/Dash'
-import GetSupport from '@/Components/Asidebar/GetSupport'
-import Gethelp from '@/Components/Asidebar/Gethelp'
-import Leaderboad from '@/Components/Asidebar/Leaderboad'
-import Payment from '@/Components/Asidebar/Payment'
-import Quiz from '@/Components/Asidebar/Quiz'
-import Refferal from '@/Components/Asidebar/Refferal'
-import Setting from '@/Components/Asidebar/Setting'
-import Spin from '@/Components/Asidebar/Spin'
+import Dash from '../../Components/Asidebar/Dash'
 import React from 'react'
 
 const page = () => {
