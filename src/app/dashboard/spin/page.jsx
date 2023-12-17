@@ -1,4 +1,4 @@
-import Spin from '@/Components/Asidebar/Spin'
+import Spin from '../../../Components/Asidebar/Spin'
 import React from 'react'
 
 const SpinPage = () => {

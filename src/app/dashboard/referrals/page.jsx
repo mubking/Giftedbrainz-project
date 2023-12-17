@@ -1,4 +1,4 @@
-import Refferal from '@/Components/Asidebar/Refferal'
+import Refferal from '../../../Components/Asidebar/Refferal'
 import React from 'react'
 
 const ReferralsPage = () => {

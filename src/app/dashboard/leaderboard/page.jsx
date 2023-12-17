@@ -1,4 +1,4 @@
-import Leaderboad from '@/Components/Asidebar/Leaderboad';
+import Leaderboad from '../../../Components/Asidebar/Leaderboad';
 import React from 'react'
 
 function page() {

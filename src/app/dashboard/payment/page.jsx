@@ -1,4 +1,4 @@
-import Payment from '@/Components/Asidebar/Payment'
+import Payment from '../../../Components/Asidebar/Payment'
 import React from 'react'
 
 const PaymentPage = () => {
