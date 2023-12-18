@@ -80,8 +80,11 @@ function Signup() {
         <img src="/brainz.png" alt="" style={{ height: "30vh" }} />
       </div>
       <h1 className="text-3xl relative bottom-">Sign up</h1>
+      <span className="text-[red]">
       {error && <p className="error">{error}</p>}
       {successMessage && <p className="success">{successMessage}</p>}
+      </span>
+  
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 ">
         <div className="w-full flex flex-col gap-2">
           <label htmlFor="username" className="text-xl">
