@@ -176,7 +176,6 @@ function Signup() {
         </div>
         <div className="sign up flex items-center gap-5">
           <button
-            // href={"/signin"}
             disabled={loading}
             class="flex text-white bg-indigo-500 border-0 py-2  px-20 focus:outline-none hover:bg-indigo-600 rounded text-lg"
           >
