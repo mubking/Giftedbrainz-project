@@ -177,7 +177,7 @@ function Signup() {
             disabled={loading}
             class="flex text-white bg-indigo-500 border-0 py-2  px-20 focus:outline-none hover:bg-indigo-600 rounded text-lg"
           >
-            {loading ? "Signing uP" : "Sign Up"}
+            {loading ? "Signing Up" : "Sign Up"}
           </button>
           <h2>or</h2>
           <span class="inline-flex mu  text-white bg-[transparent] border-0 py-3 px-10 focus:outline-none hover:bg-indigo-600 rounded text-lg">
@@ -187,7 +187,7 @@ function Signup() {
 
         <div class="link">
           Already Have An Existing Account?
-          <a href="#">
+          <a href="/signin">
             {" "}
             <span className="text-[#5852FE]">Click Here.....</span>
           </a>

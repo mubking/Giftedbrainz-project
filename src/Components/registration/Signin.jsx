@@ -192,7 +192,7 @@ function Signin() {
                 </span>
               )}
               <span className="">
-                {loading ? "Signing Up..." : "Sign Up"}
+                {loading ? "Signing In..." : "Sign In"}
               </span>
             </div>
         </button>

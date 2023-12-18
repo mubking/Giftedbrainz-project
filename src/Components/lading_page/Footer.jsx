@@ -2,11 +2,11 @@ import React from 'react'
 
 function Footer() {
   return (
-    <footer className='w-full p-5 bg-[blue] min-h-[170vh] md:min-h-[100vh] flex flex-col items-center relative'>
+    <footer className='w-full p-5 bg-[blue] min-h-[150vh] md:min-h-[100vh] flex flex-col items-center relative'>
         <div className=" text-white text-[34px] mt-5 text-center font-bold font-['Poppins'] capitalize">join our newsletter
         </div>
-        <div className="flex mt-5">
-        <input type="email"placeholder="hello@smartquiz.com"className="bg-white p-3 rounded-l border px-20 border-gray-300 outline-none text-gray-600"/>
+        <div className="flex mt-5 w-full">
+        <input type="email"placeholder="hello@smartquiz.com"className="bg-white p-3 rounded-l border  border-gray-300 outline-none text-gray-600"/>
         <button className="bg-[white] text-[red] text-[18px] p-[11px] rounded-r">Join Now</button>
        </div>
        <div className="flex w-full md:w-[60%]  flex-col md:flex-row gap-4 md:gap-28 mt-10 text-white">
