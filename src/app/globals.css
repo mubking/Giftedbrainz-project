@@ -123,9 +123,5 @@
   /* height: 10vh !important; */
   height: 40vh !important;
 }
-.two{
-  /* height: 40vh; */
-  display: none;
-  background-color: red;
-}
+
 }

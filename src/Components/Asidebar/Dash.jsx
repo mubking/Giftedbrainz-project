@@ -60,16 +60,16 @@ function Dash() {
           <img className="h-12" src="/Ellipse.png" alt="" />
         </div>
           <h2 className="mt-10 text-3xl">Good {timeOfDay} <span className="text-[#0000FF!important]">{session?.user?.username }</span>  </h2>
-        <div className="mt-10 gap-5 flex ">
-          <div className="one bg-[blue] w-[30%] h-40 text-center text-white two  ">
+        <div className="mt-10 gap-10 flex flex-col md:flex-row   ">
+          <div className="one bg-[blue] w-full  md:w-[30%] h-40 text-center text-white two  ">
             <h2 className="mt-5 text-2xl">Total Earnings</h2>
             <h1 className="text-2xl">#203,978</h1>
           </div>
-          <div className="one bg-[#34A853] w-[30%]  h-40 text-center text-white two ">
+          <div className="one bg-[#34A853] w-full  md:w-[30%]  h-40 text-center text-white two ">
             <h2 className="mt-5 text-2xl">Total Points</h2>
             <h1 className="text-2xl">2000SQP</h1>
           </div>
-          <div className="one bg-[#f5761A] w-[30%] h-40 text-center text-white  two">
+          <div className="one bg-[#f5761A] w-full  md:w-[30%] h-40 text-center text-white  two">
             <h2 className="mt-5 text-2xl">Referrals Earnings</h2>
             <h1 className="text-2xl">#12,000</h1>
           </div>
