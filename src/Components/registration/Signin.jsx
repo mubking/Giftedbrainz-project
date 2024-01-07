@@ -43,14 +43,7 @@ function Signin() {
           ? "Password should contain both numbers and special characters and have a length between 5 and 11 characters."
           : "",
     }));
-    // setErrors((prev) => ({
-    //   ...prev,
-    //   [name]:
-    //     name === "password" &&
-    //     !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/.test(value)
-    //       ? "Password should contain both numbers and special characters and have a length between 5 and 11 characters."
-    //       : "",
-    // }));
+   
   };
 
   const handleSubmit = async (e) => {
@@ -69,7 +62,6 @@ function Signin() {
           username: formData.username,
           password: formData.password,
           redirect: false,
-          // callbackUrl: "/dsahboard"
         });
 
         if (signInData.error) {
@@ -129,7 +121,7 @@ function Signin() {
             errors.username&&<span className="text-red-600">{errors.username}</span>
           }
         </div>
-        <div className="w-full flex flex-col gap-2">
+        <div className="w-full flex flex-col gap-3">
           <label htmlFor="password" className="text-xl">
             Password
           </label>
@@ -165,22 +157,7 @@ function Signin() {
             errors.password&&<span className="text-red-600">{errors.password}</span>
           }
         </div>
-        {/* <div className="flex flex-row gap-3 ">
-          <div className="">
-            <input type="checkbox" className="h-8 w-8 rounded-md" />{" "}
-          </div>
-          <div>
-            <p>
-              I Have Agree To The{" "}
-              <span className="text-[#5852FE]"> Terms & Conditions </span>{" "}
-              <br />
-              And The <span className="text-[#5852FE]">
-                Privacy & Policy
-              </span>{" "}
-              of This Website.
-            </p>
-          </div>
-        </div> */}
+    
         <div className="sign up flex items-center gap-5">
         <button
           onClick={handleSubmit}
