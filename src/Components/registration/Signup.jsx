@@ -8,11 +8,10 @@ import { FcGoogle } from "react-icons/fc";
 import { BsArrowLeft } from "react-icons/bs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 function Signup() {
   const router = useRouter();
-  const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
     username: "",
@@ -46,8 +45,10 @@ function Signup() {
       const data = await response.json();
 
       if (response.ok) {
-        setSuccessMessage(data.message);
-        setError('');
+        toast.success(data.message, {
+          position: "top-right",
+          autoClose: 3000, 
+        })
         // Clear the form fields after successful registration
         setUserDetails({
           email: '',
@@ -57,14 +58,19 @@ function Signup() {
         setLoading(false)
         router.push("/signin");
       } else {
-        setError(data.message);
-        setSuccessMessage('');
+        toast.error(data.message, {
+          position: "top-right",
+          autoClose: 3000, 
+        })
         setLoading(false)
       }
     } catch (error) {
       console.log(error);
+      toast.error("An error occurred during registration", {
+        position: "top-right",
+        autoClose: 3000, 
+      })
       // setError('An error occurred during registration');
-      setSuccessMessage('');
       setLoading(false)
     }
   };
@@ -80,11 +86,6 @@ function Signup() {
         <img src="/brainz.png" alt="" style={{ height: "30vh" }} />
       </div>
       <h1 className="text-3xl relative bottom-">Sign up</h1>
-      <span className="text-[red]">
-      {error && <p className="error">{error}</p>}
-      {successMessage && <p className="success">{successMessage}</p>}
-      </span>
-  
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 ">
         <div className="w-full flex flex-col gap-2">
           <label htmlFor="username" className="text-xl">

@@ -161,7 +161,7 @@ function Signin() {
         <div className="sign up flex items-center gap-5">
         <button
           onClick={handleSubmit}
-          className={`flex items-center py-2 px-5 rounded-2xl bg-[#5852FE] text-white w-1/2`}
+          className={`flex items-center justify-center py-2 px-5 rounded-2xl bg-[#5852FE] text-white w-1/2`}
         >
           <div>
               {loading && (

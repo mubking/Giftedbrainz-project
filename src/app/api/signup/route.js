@@ -5,8 +5,25 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   try {
     const payload = await request.json();
-    console.log(payload);
+    // console.log(payload);
     const { username, email, password } = payload;
+
+    if (!username) {
+      return NextResponse.json(
+        { message: "Username is required" },
+        { status: 400 }
+      );
+    } else if (!email) {
+      return NextResponse.json(
+        { message: "Email is required" },
+        { status: 400 }
+      );
+    } else if (!password) {
+      return NextResponse.json(
+        { message: "Password is required" },
+        { status: 400 }
+      );
+    }
 
     const usernameExist = await db.user.findUnique({
       where: { username: username },
