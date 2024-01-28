@@ -12,7 +12,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-function Signin() {
+function Signin({session}) {
+  const router = useRouter();
+  if (session) {
+    router.push("/dashboard")
+  }
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -23,7 +27,6 @@ function Signin() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

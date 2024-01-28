@@ -10,8 +10,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-function Signup() {
+function Signup({session}) {
   const router = useRouter();
+  if (session) {
+    router.push("/dashboard")
+  }
   const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
     username: "",
