@@ -1,6 +1,8 @@
 import { db } from "../../../lib/db";
 import { hash } from "bcrypt";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { authOptions } from "../../../lib/auth";
 
 export async function POST(request) {
   try {
@@ -64,6 +66,55 @@ export async function POST(request) {
   } catch (error) {
     return NextResponse.json(
       { message: "Registration Failed" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PATCH(request) {
+  const session = await getServerSession(authOptions);
+  const userId = session?.user?.id;
+
+  const payload = await request.json();
+  const { image } = payload;
+
+  console.log("payload", { payload });
+
+  if (!session) {
+    return NextResponse.json({ message: "Unauthorized, please login" });
+  }
+
+  try {
+    const profile = await db.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        username,
+        email,
+      },
+    });
+    if (profile) {
+      return NextResponse.json(
+        {
+          message: "Profile successfully updated!",
+        },
+        { status: 200 }
+      );
+    } else {
+      return NextResponse.json(
+        {
+          message: "something went wrong",
+        },
+        { status: 400 }
+      );
+    }
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      {
+        message: "Internal server error",
+      },
       { status: 500 }
     );
   }

@@ -26,14 +26,14 @@ const AppWrapper = ({ children }) => {
         ""
       )}
       <div
-        className={`w-full ${pathname === "/dashboard" ||
+        className={`w-full mt-10 md:mt-0 ${pathname === "/dashboard" ||
         pathname === "/dashboard/competition" ||
         pathname === "/dashboard/leaderboard" ||
         pathname === "/dashboard/spin" ||
         pathname === "/dashboard/payment" ||
         pathname === "/dashboard/referrals" ||
         pathname === "/dashboard/settings" ||
-        pathname === "/dashboard/gethelp" ? (isOpen ? "pl-[100px]" : "pl-[250px]") : 
+        pathname === "/dashboard/gethelp" ? (isOpen ? "pl-0 md:pl-[100px]" : "pl-0 md:pl-[250px]") : 
         (isOpen ? "pl-[0px]" : "pl-[0px]")}
         `}
       >

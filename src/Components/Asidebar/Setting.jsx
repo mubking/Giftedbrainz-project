@@ -3,9 +3,15 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 import { toast, ToastContainer } from "react-toastify";
+import { IoClose } from "react-icons/io5";
+import { handleImageSaveToFireBase } from "../../lib/_hj";
 
 function Setting() {
+  const [image, setImage] = useState(null);
+  const [isPopUp, setIsPopUp] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [error, setError] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
   const [formData, setformData] = useState({
     username: "",
     email: "",
@@ -16,16 +22,49 @@ function Setting() {
   });
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    let input = document.querySelector("input");
+  const handleFileChange = async (e) => {
+    if (!e.target.files) return;
+    const file = e.target.files[0];
+    const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+    const maxSize = 500 * 1024;
+  
+    if (!allowedTypes.includes(file?.type)) {
+      setError("Profile picture should include PNG, JPG, and PDF files only");
+    } else if (file && file?.size > maxSize) {
+      setError("Profile picture size should not exceed the limit (500 KB)");
+    } else {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        setSelectedImage(reader.result);
+        setImageLoading(true);
+        const saveImageToFirebase = await handleImageSaveToFireBase(file);
+        setImageLoading(false);
+        console.log(saveImageToFirebase, "saveImageToFirebase");
+        if (saveImageToFirebase) {
+          setImage(saveImageToFirebase);
+          setError("");
+        } else {
+          setError("Failed to upload image to Firebase");
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
-    input.addEventListener("change", () => {
-      const file = input.files[0];
-      if (file) {
-        setSelectedImage(URL.createObjectURL(file));
-      }
-    });
-  }, []);
+  const handleUploadMedia = async () => {
+    try {
+      const resp = await fetch("/", {
+        method: "PATCH",
+        headers: {
+          "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(image)
+      })
+    } catch (error) {
+      
+    }
+  }
+  
 
   const getUserInfo = async () => {
     try {
@@ -68,29 +107,28 @@ function Setting() {
       console.log(result);
       const { message } = result;
       if (resp.ok) {
-        toast.success(message,{
+        toast.success(message, {
           position: "top-right",
-          autoClose: 3000, 
+          autoClose: 3000,
         });
         setLoading(false);
         signOut({
           redirect: true,
           callbackUrl: `${window.location.origin}/signin`,
-        })
-      }
-      else{
-        toast.error(message,{
+        });
+      } else {
+        toast.error(message, {
           position: "top-right",
-          autoClose: 3000, 
+          autoClose: 3000,
         });
         setLoading(false);
       }
     } catch (error) {
       setLoading(false);
       console.log(error);
-      toast.error("Internal server error",{
+      toast.error("Internal server error", {
         position: "top-right",
-        autoClose: 3000, 
+        autoClose: 3000,
       });
     }
   };
@@ -109,11 +147,51 @@ function Setting() {
       </div>
 
       <img
-        src={selectedImage || "placeholder-image-url.jpg"}
+        src={"placeholder-image-url.jpg"}
         alt=""
         className="h-[150px] w-[150px] rounded-full object-cover mt-10 bg-[#ddd]"
       />
-      <input type="file" id="file" name="file" className="mt-10" />
+      <button
+        onClick={() => setIsPopUp(true)}
+        className="px-4 py-2 bg-[#5852FE] text-white rounded-xl"
+      >
+        upload your profile
+      </button>
+
+      {isPopUp && (
+        <div className="h-screen w-full fixed top-0 left-0 bottom-0 flex items-center justify-center">
+          <div className="w-full bg-white shadow rounded-2xl p-3 max-w-[500px] h-fit">
+            <span
+              className="flex items-end justify-end"
+              onClick={() => setIsPopUp(false)}
+            >
+              <IoClose />
+            </span>
+            <img
+              src={selectedImage || "placeholder-image-url.jpg"}
+              alt=""
+              className="h-[150px] w-[150px] rounded-full object-cover mt-10 bg-[#ddd]"
+            />
+            {
+              error&& <p className="text-red-600">{error}</p>
+            }
+            {image ? (
+              <button onCanPlay={handleUploadMedia} className="bg-[#5852FE] text-white px-3 py-2 rounded-xl">
+                Upload +
+              </button>
+            ) : (
+              <>
+              <input
+                type="file"
+                onChange={handleFileChange}
+                className="mt-10 input"
+              />
+              <button>{imageLoading && "uploading"}</button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className=" mt-2 flex flex-col gap-3 ">
         <label htmlFor="username">Username</label>
@@ -165,7 +243,7 @@ function Setting() {
       <div className="btn flex justify-between mt-10">
         <button
           onClick={handleUpdateProfile}
-          class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+          className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
         >
           {loading ? "saving" : "Save"}
         </button>
@@ -176,12 +254,12 @@ function Setting() {
               callbackUrl: `${window.location.origin}/signin`,
             })
           }
-          class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+          className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
         >
           Log Out
         </button>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }

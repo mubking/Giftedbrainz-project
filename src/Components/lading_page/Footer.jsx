@@ -5,7 +5,7 @@ function Footer() {
     <footer className='w-full p-5 bg-[blue] min-h-[150vh] md:min-h-[100vh] flex flex-col items-center relative'>
         <div className=" text-white text-[34px] mt-5 text-center font-bold font-['Poppins'] capitalize">join our newsletter
         </div>
-        <div className="flex mt-5 w-full">
+        <div className="flex mt-5 w-full justify-center">
         <input type="email"placeholder="hello@smartquiz.com"className="bg-white p-3 rounded-l border  border-gray-300 outline-none text-gray-600"/>
         <button className="bg-[white] text-[red] text-[18px] p-[11px] rounded-r">Join Now</button>
        </div>
@@ -66,7 +66,7 @@ function Footer() {
        </div>
  
     <footer className=" w-full text-white text- text-opacity-60 font-semibold font-['Poppins'] capitalize p-4 text-center absolute bottom-0">
-      <p>&copy; 2023 copyright by <span className='text-[purple] '>MubaraqCodes</span> . all right reserved.</p>
+      <p>&copy; 2024 copyright by <span className='text-[purple] '>MubaraqCodes</span> . all right reserved.</p>
     </footer>
 
 

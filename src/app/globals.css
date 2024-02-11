@@ -9,7 +9,7 @@
 }
 
 .toggle div {
-  background-color: #FF00FF;
+  background-color: #9C9EF6;
   height: 2px;
   width: 25px;
   transition: all 0.4s ease;
@@ -108,6 +108,9 @@
   display: flex;
   flex-direction: column;
 }
+.two{
+  display: none;
+}
 .seventy{
   min-height: 120vh;
 }
@@ -121,6 +124,7 @@
 }
 .three img{
   /* height: 10vh !important; */
+  
   height: 40vh !important;
 }
 

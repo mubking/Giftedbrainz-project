@@ -1,11 +1,11 @@
 "use client";
 import { useSession } from "next-auth/react";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoNotificationsOutline } from "react-icons/io5";
 function Dash() {
-  const [timeOfDay, setTimeOfDay] = useState('');
-  const {data: session} = useSession();
+  const [timeOfDay, setTimeOfDay] = useState("");
+  const { data: session } = useSession();
   const tasks = [
     { number: 1, task: " what is UI/UX Design", totalAnswered: 10, points: 50 },
     { number: 2, task: "principle of design", totalAnswered: 8, points: 40 },
@@ -15,19 +15,17 @@ function Dash() {
     { number: 6, task: "data analysis", totalAnswered: 12, points: 60 },
   ];
 
-  
-
   useEffect(() => {
     const determineTimeOfDay = () => {
       const currentDate = new Date();
       const currentHour = currentDate.getHours();
 
       if (currentHour >= 6 && currentHour < 12) {
-        setTimeOfDay('Morning');
+        setTimeOfDay("Morning");
       } else if (currentHour >= 12 && currentHour < 16) {
-        setTimeOfDay('Afternoon');
+        setTimeOfDay("Afternoon");
       } else {
-        setTimeOfDay('Evening');
+        setTimeOfDay("Evening");
       }
     };
 
@@ -43,10 +41,10 @@ function Dash() {
   return (
     <>
       <div className="w-full min-h-screen bg-[white] p-5 ">
-        <div className="flex flex-row  items-center gap-10">
-          <h1 className="text-3xl">Dashboard</h1>
+        <div className="flex flex-row  items-center justify-between">
+          <h1 className="text-2xl md:text-3xl">Dashboard</h1>
 
-          <div className="field flex w-full ">
+          <div className="field hidden md:flex w-[70%] ">
             <div className="fas flex justify-center items-center">
               <AiOutlineSearch style={{ height: "100%", width: "100%" }} />
             </div>
@@ -56,21 +54,28 @@ function Dash() {
               className="w-full"
             />
           </div>
-          <IoNotificationsOutline style={{ fontSize: "50px", width: "" }} />
-          <img className="h-12" src="/Ellipse.png" alt="" />
+          <div className="flex items-center gap-1">
+          <IoNotificationsOutline className="text-2xl md:text-[30px]" />
+          <img className="h-10 md:h-12" src="/Ellipse.png" alt="" />
+          </div>
         </div>
-          <h2 className="mt-10 text-3xl">Good {timeOfDay} <span className="text-[#0000FF!important]">{session?.user?.username }</span>  </h2>
-        <div className="mt-10 gap-10 flex flex-col md:flex-row   ">
-          <div className="one bg-[blue] w-full  md:w-[30%] h-40 text-center text-white two  ">
-            <h2 className="mt-5 text-2xl">Total Earnings</h2>
+        <h2 className="mt-10 text-2xl md:text-3xl">
+          Good {timeOfDay}{" "}
+          <span className="text-[#0000FF!important]">
+            {session?.user?.username}
+          </span>{" "}
+        </h2>
+        <div className="mt-10 grid gap-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+          <div className=" flex-col bg-[blue] rounded-xl flex items-center justify-center h-40 text-white  ">
+            <h2 className=" text-2xl">Total Earnings</h2>
             <h1 className="text-2xl">#203,978</h1>
           </div>
-          <div className="one bg-[#34A853] w-full  md:w-[30%]  h-40 text-center text-white two ">
-            <h2 className="mt-5 text-2xl">Total Points</h2>
+          <div className=" flex-col bg-[#34A853] rounded-xl flex items-center justify-center  h-40  text-white ">
+            <h2 className=" text-2xl">Total Points</h2>
             <h1 className="text-2xl">2000SQP</h1>
           </div>
-          <div className="one bg-[#f5761A] w-full  md:w-[30%] h-40 text-center text-white  two">
-            <h2 className="mt-5 text-2xl">Referrals Earnings</h2>
+          <div className=" flex-col bg-[#f5761A] rounded-xl flex items-center justify-center h-40 text-white">
+            <h2 className=" text-2xl">Referrals Earnings</h2>
             <h1 className="text-2xl">#12,000</h1>
           </div>
         </div>

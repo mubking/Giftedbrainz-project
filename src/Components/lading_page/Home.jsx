@@ -12,7 +12,7 @@ function Home() {
       </div>
       <div className='w-full three' style={{ position: 'relative' }}>
         <img src="/Dashboard.png" alt=""  style={{height:"60vh"}}/>
-        <img className='two' src="/Dashboard.png" alt="" style={{ position: 'absolute', top: 130, right: 270, height:"50vh" }} />
+        <img className='two ' src="/Dashboard.png" alt="" style={{ position: 'absolute', top: 130, right: 270, height:"50vh" }} />
       </div>
 
     </div>
